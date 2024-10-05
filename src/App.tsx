@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Search } from "./components/Search";
 import { fetchBooks } from "./api/googleBooks";
-import { Sparkles } from "./components/Sparkles";
+import { Title } from "./components/Title";
 
 function App() {
   const [searchResult, setSearchResult] = useState("");
@@ -46,7 +46,7 @@ function App() {
   return (
     <>
       <main className="flex flex-col items-center w-[100vw] h-[100vh] py-[100px] bg-[#111]">
-        <Sparkles />
+        <Title />
         <Search
           handleSearch={handleSearch}
           error={loading ? "" : error}

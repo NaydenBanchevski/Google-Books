@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PlaceholdersAndVanishInput } from "../aceternity/components/ui/placeholders-and-vanish-input";
+import { placeholders } from "../data/data";
 
 export function Search({
   handleSearch,
@@ -19,16 +20,6 @@ export function Search({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  const placeholders = [
-    "So we beat on, boats against the current. - The Great Gatsby",
-    "Call me Ishmael. - Moby Dick",
-    "Not all those who wander are lost. - The Fellowship of the Ring",
-    "Stay gold, Ponyboy. - The Outsiders",
-    "Beware; for I am fearless. - Frankenstein",
-    "All animals are equal. - Animal Farm",
-    "I am no bird; and no net ensnares me. - Jane Eyre",
-    "Big Brother is watching you. - 1984",
-  ];
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

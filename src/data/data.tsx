@@ -1,0 +1,17 @@
+export const placeholders = [
+  "So we beat on, boats against the current. - The Great Gatsby",
+  "Call me Ishmael. - Moby Dick",
+  "Not all those who wander are lost. - The Fellowship of the Ring",
+  "Stay gold, Ponyboy. - The Outsiders",
+  "Beware; for I am fearless. - Frankenstein",
+  "All animals are equal. - Animal Farm",
+  "I am no bird; and no net ensnares me. - Jane Eyre",
+  "Big Brother is watching you. - 1984",
+  "It is a truth universally acknowledged. - Pride and Prejudice",
+  "The only thing we have to fear is fear itself. - The Grapes of Wrath",
+  "There is no greater agony than bearing an untold story. - I Know Why the Caged Bird Sings",
+  "I am legend. - I Am Legend",
+  "So it goes. - Slaughterhouse-Five",
+  "We are such stuff as dreams are made on. - The Tempest",
+  "To be or not to be. - Hamlet",
+];
