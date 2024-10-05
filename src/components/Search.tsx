@@ -7,12 +7,12 @@ export function Search({
   handleSearch,
   error,
   books,
-  loading, // New loading prop
+  loading,
 }: {
   handleSearch: (searchValue: string) => void;
   error: string;
   books: any[];
-  loading: boolean; // New loading prop type
+  loading: boolean;
 }) {
   const [inputValue, setInputValue] = useState("");
 
