@@ -1,46 +1,58 @@
-import { useState } from "react";
-import { SparklesPreview } from "./components/Sparkles";
+import { useEffect, useState } from "react";
+import { Search } from "./components/Search";
 import { fetchBooks } from "./api/googleBooks";
+import { Sparkles } from "./components/Sparkles";
 
 function App() {
   const [searchResult, setSearchResult] = useState("");
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<any[]>([]);
   const [error, setError] = useState("");
-  const handleSearch = async (e: any) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false);
 
-    if (searchResult.trim() === "") {
-      e.preventDefault();
+  useEffect(() => {
+    const fetchBookData = async () => {
+      if (!searchResult) return;
+      setLoading(true);
+
+      try {
+        const result = await fetchBooks(searchResult);
+        if (result.length > 0) {
+          setBooks(result);
+          setError("");
+        } else {
+          setError("No books found");
+        }
+      } catch (err) {
+        setError("Error fetching books.");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBookData();
+  }, [searchResult]);
+
+  const handleSearch = (searchValue: string) => {
+    if (searchValue.trim() === "") {
       setError("Please enter a book title");
       setTimeout(() => setError(""), 2000);
       return;
     }
 
-    const result = await fetchBooks(searchResult);
-    setBooks(result);
-    console.log(result);
+    setSearchResult(searchValue);
   };
 
   return (
     <>
-      <main className="flex flex-col items-center w-[100vw] h-[100vh] bg-[#111]">
-        <SparklesPreview />
-        <div className="w-[300px] md:w-[600px] lg:w-[800px]">
-          <form onSubmit={handleSearch} className="flex w-full space-x-3 bg-4">
-            <input
-              type="text"
-              className="border rounded p-2 w-full "
-              placeholder="Search for books..."
-              value={searchResult}
-              onChange={(e) => setSearchResult(e.target.value)}
-            />
-
-            <button className="border rounded p-2 w-[100px] text-white bg-blue-500">
-              Search
-            </button>
-          </form>
-          <p className="text-red-500">{error}</p>
-        </div>
+      <main className="flex flex-col items-center w-[100vw] h-[100vh] py-[100px] bg-[#111]">
+        <Sparkles />
+        <Search
+          handleSearch={handleSearch}
+          error={loading ? "" : error}
+          books={books}
+          loading={loading}
+        />
       </main>
     </>
   );
