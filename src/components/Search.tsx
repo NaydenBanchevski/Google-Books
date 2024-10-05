@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PlaceholdersAndVanishInput } from "../aceternity/components/ui/placeholders-and-vanish-input";
 import { placeholders } from "../data/data";
+import { Cards } from "./Cards";
 
 export function Search({
   handleSearch,
@@ -26,31 +27,46 @@ export function Search({
     handleSearch(inputValue);
   };
 
+  const formattedCards = books.map((book) => ({
+    title: book.volumeInfo.title,
+    description: book.volumeInfo.authors?.join(", ") || "Unknown Author",
+    src: book.volumeInfo.imageLinks?.thumbnail || "default_image_url",
+    ctaText: "View More",
+    ctaLink: book.volumeInfo.infoLink,
+    id: book.id,
+    content: () => {
+      const fullDescription =
+        book.volumeInfo.description || "No description available.";
+      const trimmedDescription =
+        fullDescription.length > 200
+          ? `${fullDescription.slice(0, 200)}...`
+          : fullDescription;
+
+      return <p>{trimmedDescription}</p>;
+    },
+  }));
+
   return (
     <>
-      <div className="h-[40rem]  w-[90%] flex flex-col items-center px-4">
+      <div className=" m-0 w-[90%] flex flex-col items-center px-4">
         <PlaceholdersAndVanishInput
           placeholders={placeholders}
           onChange={handleChange}
           onSubmit={onSubmit}
         />
-
-        <div className="mt-4">
-          {loading ? (
-            <p className="text-white">Loading books...</p>
-          ) : books.length > 0 ? (
-            <ul>
-              {books.map((book, index) => (
-                <li key={index} className="text-white mb-2">
-                  <h3>{book.volumeInfo.title}</h3>
-                  <p>{book.volumeInfo.authors?.join(", ")}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-red-500">{error}</p>
-          )}
-        </div>
+      </div>
+      <div className="mt-10">
+        {loading ? (
+          <p className="bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent">
+            Loading books...
+          </p>
+        ) : books.length > 0 ? (
+          <Cards cards={formattedCards} />
+        ) : (
+          <p className="bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent">
+            {error}
+          </p>
+        )}
       </div>
     </>
   );

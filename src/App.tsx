@@ -13,7 +13,6 @@ function App() {
     const fetchBookData = async () => {
       if (!searchResult) return;
       setLoading(true);
-
       try {
         const result = await fetchBooks(searchResult);
         if (result.length > 0) {
@@ -35,7 +34,7 @@ function App() {
 
   const handleSearch = (searchValue: string) => {
     if (searchValue.trim() === "") {
-      setError("Please enter a book title");
+      setError("Invalid input");
       setTimeout(() => setError(""), 2000);
       return;
     }
@@ -44,17 +43,15 @@ function App() {
   };
 
   return (
-    <>
-      <main className="flex flex-col items-center w-[100vw] h-[100vh] py-[100px] bg-[#111]">
-        <Title />
-        <Search
-          handleSearch={handleSearch}
-          error={loading ? "" : error}
-          books={books}
-          loading={loading}
-        />
-      </main>
-    </>
+    <main className="flex flex-col items-center w-[100vw] min-h-[100vh] py-[100px] bg-[#111]">
+      <Title />
+      <Search
+        handleSearch={handleSearch}
+        error={loading ? "" : error}
+        books={books}
+        loading={loading}
+      />
+    </main>
   );
 }
 

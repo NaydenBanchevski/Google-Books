@@ -67,3 +67,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.blur-background {
+  filter: blur(5px);
+  transition: filter 0.1s ease-in-out;
+}
