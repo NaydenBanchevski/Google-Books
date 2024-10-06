@@ -1,7 +1,8 @@
 {
   "files": [],
   "compilerOptions": {
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "checkJs": false
   },
   "references": [
     { "path": "./tsconfig.app.json" },
