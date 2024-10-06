@@ -210,7 +210,7 @@ export function PlaceholdersAndVanishInput({
       <button
         disabled={!value}
         type="submit"
-        className={`absolute mr-2 right-2 top-1/2 z-30 -translate-y-1/2 h-8 w-8 rounded-full transition duration-200 flex items-center justify-center 
+        className={`absolute mr-2 right-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full transition duration-200 flex items-center justify-center 
     ${
       !value ? "bg-[#333]/80 " : "bg-gradient-to-r from-sky-500 to-indigo-500"
     }`}

@@ -39,8 +39,8 @@ export function Search({
       const fullDescription =
         book.volumeInfo.description || "No description available.";
       const trimmedDescription =
-        fullDescription.length > 200
-          ? `${fullDescription.slice(0, 200)}...`
+        fullDescription.length > 300
+          ? `${fullDescription.slice(0, 300)}...`
           : fullDescription;
 
       return <p>{trimmedDescription}</p>;
@@ -69,7 +69,7 @@ export function Search({
           </p>
         )}
       </div>
-      <div className="lg:absolute relative flex flex-col items-center lg:right-32 lg:top-[440px] right-auto bottom-5 lg:bottom-auto">
+      <div className="xl:absolute relative flex flex-col items-center xl:right-20 xl:top-[440px] right-auto bottom-5 lg:bottom-auto">
         <Favorites cards={formattedCards} />
       </div>
     </>

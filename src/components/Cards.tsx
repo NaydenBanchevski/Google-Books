@@ -196,7 +196,7 @@ export function Cards({ cards }: { cards: any }) {
         ) : null}
       </AnimatePresence>
 
-      <ul className="max-w-2xl mx-auto w-full  gap-4">
+      <ul className="max-w-2xl mx-auto w-full  gap-4 mb-20">
         {cards.map((card: any, index: any) => (
           <motion.div
             key={card.id}
@@ -218,7 +218,7 @@ export function Cards({ cards }: { cards: any }) {
               <div>
                 <motion.h3
                   layoutId={`title-${card.title}-${index}`}
-                  className="font-medium text-neutral-300 max-w-[400px]  text-center md:text-left"
+                  className="font-medium text-neutral-300 max-w-[300px] mr-10  text-center md:text-left"
                 >
                   {card.title}
                 </motion.h3>
