@@ -69,7 +69,7 @@ export function Search({
           </p>
         )}
       </div>
-      <div className="lg:absolute flex flex-col items-center xl:right-10 xl:top-[440px] bottom-5 xl:bottom-auto">
+      <div className="lg:absolute flex flex-col items-center xl:right-24 xl:top-[440px] bottom-5 xl:bottom-auto">
         <Favorites cards={formattedCards} />
       </div>
     </>
