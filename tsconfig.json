@@ -2,7 +2,8 @@
   "files": [],
   "compilerOptions": {
     "noUnusedParameters": false,
-    "checkJs": false
+    "skipLibCheck": true,
+    "noEmit": true
   },
   "references": [
     { "path": "./tsconfig.app.json" },
