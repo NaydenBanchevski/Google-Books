@@ -192,7 +192,7 @@ export const Favorites = ({ cards }: { cards: any }) => {
 
       <AnimatePresence>
         {favorites.length > 0 ? (
-          <div className="flex flex-col lg:ml-10 items-center justify-center p-4 ">
+          <div className="flex flex-col items-center justify-center p-4 ">
             <h2 className="text-2xl font-bold text-neutral-600 dark:text-neutral-200">
               Favorites
             </h2>
@@ -202,7 +202,7 @@ export const Favorites = ({ cards }: { cards: any }) => {
                   onClick={() => setActive(favorite)}
                   key={favorite.id}
                   layout
-                  className="p-4 flex mb-5  hover:shadow-2xl hover:shadow-sky-500/[0.1]  flex-col md:flex-row justify-between items-center hover:outline outline-1 outline-indigo-500 dark:hover:bg-neutral-800 transition-all duration-0.2s ease-in-out rounded-xl cursor-pointer "
+                  className="p-4 flex max-w-[300px] mb-5  hover:shadow-2xl hover:shadow-sky-500/[0.1]  flex-col md:flex-row justify-between items-center hover:outline outline-1 outline-indigo-500 dark:hover:bg-neutral-800 transition-all duration-0.2s ease-in-out rounded-xl cursor-pointer "
                 >
                   <div className="flex gap-4 flex-col items-center md:flex-row">
                     <motion.div layout>
