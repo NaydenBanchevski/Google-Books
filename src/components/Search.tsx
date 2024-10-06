@@ -69,7 +69,7 @@ export function Search({
           </p>
         )}
       </div>
-      <div className="sm:absolute relative flex flex-col  items-center sm:right-32 sm:top-[440px] right-auto bottom- ">
+      <div className="lg:absolute relative flex flex-col items-center lg:right-32 lg:top-[440px] right-auto bottom-5 lg:bottom-auto">
         <Favorites cards={formattedCards} />
       </div>
     </>
