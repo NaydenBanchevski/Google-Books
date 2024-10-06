@@ -68,14 +68,14 @@ export function Cards({ cards }: { cards: any }) {
 
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
+          <div className="fixed inset-0 grid place-items-center z-[50]">
             <motion.button
               key={`button-${active.id}`}
               layout
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0, transition: { duration: 0.2 } }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+              className="flex absolute top-2 right-2 lg:hidden items-center justify-center z-[100] bg-white rounded-full h-6 w-6"
               onClick={() => setActive(null)}
             >
               <CloseIcon />
@@ -149,7 +149,7 @@ export function Cards({ cards }: { cards: any }) {
                     layoutId={`button-${active.id}`}
                     href={active.ctaLink}
                     target="_blank"
-                    className="px-4 py-3 text-sm rounded-full font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white"
+                    className="px-4 py-3 min-w-[120px] text-center text-sm rounded-full font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white"
                   >
                     {active.ctaText}
                   </motion.a>
@@ -234,7 +234,7 @@ export function Cards({ cards }: { cards: any }) {
 
             <motion.button
               layoutId={`button-${card.id}-${index}`}
-              className="text-sm w-[100px] h-[40px] rounded-full font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white mt-4 md:mt-0"
+              className="text-sm min-w-[120px] h-[40px] rounded-full font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white mt-4 md:mt-0"
             >
               {card.ctaText}
             </motion.button>

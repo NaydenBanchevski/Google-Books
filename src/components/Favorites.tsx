@@ -71,7 +71,7 @@ export const Favorites = ({ cards }: { cards: any }) => {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0, transition: { duration: 0.2 } }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+              className="flex absolute top-2 right-2 lg:hidden items-center z-[100] justify-center bg-white rounded-full h-6 w-6"
               onClick={() => setActive(null)}
             >
               <CloseIcon />
@@ -145,7 +145,7 @@ export const Favorites = ({ cards }: { cards: any }) => {
                     layoutId={`button-${active.id}`}
                     href={active.ctaLink}
                     target="_blank"
-                    className="px-4 py-3 text-sm rounded-full font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white"
+                    className="px-4 min-w-[120px] py-3 text-sm rounded-full font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white"
                   >
                     {active.ctaText}
                   </motion.a>
