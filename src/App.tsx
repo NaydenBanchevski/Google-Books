@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Search } from "./components/Search";
 import { fetchBooks } from "./api/googleBooks";
 import { Title } from "./components/Title";
+import Footer from "./components/Footer";
 
 function App() {
   const [searchResult, setSearchResult] = useState("");
@@ -51,6 +52,7 @@ function App() {
         books={books}
         loading={loading}
       />
+      <Footer />
     </main>
   );
 }
