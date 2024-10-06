@@ -192,11 +192,11 @@ export const Favorites = ({ cards }: { cards: any }) => {
 
       <AnimatePresence>
         {favorites.length > 0 ? (
-          <div className="flex flex-col items-center justify-center p-4 ">
+          <div className="flex flex-col items-center  justify-center p-4 ">
             <h2 className="text-2xl font-bold text-neutral-600 dark:text-neutral-200">
               Favorites
             </h2>
-            <ul className="max-w-xl mx-auto w-full gap-4">
+            <ul className="max-w-2xl w-full gap-4">
               {favorites.map((favorite: any) => (
                 <motion.div
                   onClick={() => setActive(favorite)}
@@ -234,8 +234,8 @@ export const Favorites = ({ cards }: { cards: any }) => {
             </ul>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center p-4">
-            <h2 className="text-2xl font-bold text-neutral-600 dark:text-neutral-200">
+          <div className="flex flex-col items-center justify-center max-w-[300px] p-4">
+            <h2 className="text-2xl text-center font-bold text-neutral-600 dark:text-neutral-200">
               No favorites yet
             </h2>
           </div>
