@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PlaceholdersAndVanishInput } from "../aceternity/components/ui/placeholders-and-vanish-input";
 import { placeholders } from "../data/data";
 import { Cards } from "./Cards";
+import { Favorites } from "./Favorites";
 
 export function Search({
   handleSearch,
@@ -48,7 +49,7 @@ export function Search({
 
   return (
     <>
-      <div className=" m-0 w-[90%] flex flex-col items-center px-4">
+      <div className=" m-0 w-[90%] flex flex-col items-center px-4 relative">
         <PlaceholdersAndVanishInput
           placeholders={placeholders}
           onChange={handleChange}
@@ -67,6 +68,9 @@ export function Search({
             {error}
           </p>
         )}
+      </div>
+      <div className="sm:absolute relative flex flex-col  items-center sm:right-32 sm:top-[440px] right-auto bottom- ">
+        <Favorites cards={formattedCards} />
       </div>
     </>
   );

@@ -1,20 +1,24 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../redux/store";
+import { removeFavorite } from "../redux/favoritesSlice";
 import { useEffect, useRef, useState } from "react";
 import { CloseIcon } from "../aceternity/components/blocks/expandable-card-demo-grid";
 import { useOutsideClick } from "../aceternity/hooks/use-outside-click";
-import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, removeFavorite } from "../redux/favoritesSlice";
+import { AnimatePresence, motion } from "framer-motion";
 
-export function Cards({ cards }: { cards: any }) {
+export const Favorites = ({ cards }: { cards: any }) => {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
     null
   );
-  const ref = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+  const favorites = useSelector((state: RootState) => state.favorites);
 
-  // Step 1: Get favorites from Redux
-  const favorites = useSelector((state: any) => state.favorites);
+  const handleRemoveFavorite = (favorite: any) => {
+    dispatch(removeFavorite(favorite));
+    setActive(null);
+  };
 
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -33,14 +37,6 @@ export function Cards({ cards }: { cards: any }) {
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
-
-  const handleAddFavorite = (card: any) => {
-    if (favorites.find((fav: any) => fav.id === card.id)) {
-      dispatch(removeFavorite(card.id));
-    } else {
-      dispatch(addFavorite(card));
-    }
-  };
 
   return (
     <div>
@@ -164,12 +160,10 @@ export function Cards({ cards }: { cards: any }) {
                       scale: 0,
                       transition: { duration: 0.2 },
                     }}
-                    onClick={() => handleAddFavorite(active)}
-                    className="px-4 py-2 text-white bg-green-700 rounded-lg"
+                    onClick={() => handleRemoveFavorite(active)}
+                    className="px-4 py-2 text-white bg-red-500 rounded-lg"
                   >
-                    {favorites.find((fav: any) => fav.id === active.id)
-                      ? "Added"
-                      : "+ Add to Favorites"}
+                    Remove
                   </motion.button>
                 </div>
 
@@ -196,51 +190,57 @@ export function Cards({ cards }: { cards: any }) {
         ) : null}
       </AnimatePresence>
 
-      <ul className="max-w-2xl mx-auto w-full  gap-4">
-        {cards.map((card: any, index: any) => (
-          <motion.div
-            key={card.id}
-            layoutId={`card-${card.id}-${index}`}
-            onClick={() => setActive(card)}
-            className="p-4 flex mb-2  hover:shadow-2xl hover:shadow-sky-500/[0.1]  flex-col md:flex-row justify-between items-center hover:outline outline-1 outline-indigo-500 dark:hover:bg-neutral-800 transition-all duration-0.2s ease-in-out rounded-xl cursor-pointer "
-          >
-            <div className="flex gap-4 flex-col items-center md:flex-row">
-              <motion.div layoutId={`image-${card.src}-${index}`}>
-                <img
-                  width={100}
-                  height={100}
-                  src={card.src}
-                  alt={card.title}
-                  className="h-40 w-40  md:h-14 md:w-14 rounded-lg object-cover object-top"
-                />
-              </motion.div>
-
-              <div>
-                <motion.h3
-                  layoutId={`title-${card.title}-${index}`}
-                  className="font-medium text-neutral-300 max-w-[400px]  text-center md:text-left"
+      <AnimatePresence>
+        {favorites.length > 0 ? (
+          <div className="flex flex-col items-center justify-center p-4 ">
+            <h2 className="text-2xl font-bold text-neutral-600 dark:text-neutral-200">
+              Favorites
+            </h2>
+            <ul className="max-w-2xl mx-auto w-full gap-4">
+              {favorites.map((favorite: any) => (
+                <motion.div
+                  onClick={() => setActive(favorite)}
+                  key={favorite.id}
+                  layout
+                  className="p-4 flex mb-5  hover:shadow-2xl hover:shadow-sky-500/[0.1]  flex-col md:flex-row justify-between items-center hover:outline outline-1 outline-indigo-500 dark:hover:bg-neutral-800 transition-all duration-0.2s ease-in-out rounded-xl cursor-pointer "
                 >
-                  {card.title}
-                </motion.h3>
-
-                <motion.p
-                  layoutId={`description-${card.description}-${index}`}
-                  className="text-neutral-400  text-center md:text-left"
-                >
-                  {card.description}
-                </motion.p>
-              </div>
-            </div>
-
-            <motion.button
-              layoutId={`button-${card.id}-${index}`}
-              className="text-sm w-[100px] h-[40px] rounded-full font-bold bg-gradient-to-r from-sky-500 to-indigo-500 text-white mt-4 md:mt-0"
-            >
-              {card.ctaText}
-            </motion.button>
-          </motion.div>
-        ))}
-      </ul>
+                  <div className="flex gap-4 flex-col items-center md:flex-row">
+                    <motion.div layout>
+                      <img
+                        width={100}
+                        height={100}
+                        src={favorite.src}
+                        alt={favorite.title}
+                        className="h-40 w-40 md:h-14 md:w-14 rounded-lg object-cover object-top"
+                      />
+                    </motion.div>
+                    <div>
+                      <motion.h3
+                        layout
+                        className="font-medium text-neutral-300 max-w-[400px] text-center md:text-left"
+                      >
+                        {favorite.title}
+                      </motion.h3>
+                      <motion.p
+                        layout
+                        className="text-neutral-400 text-center md:text-left"
+                      >
+                        {favorite.description}
+                      </motion.p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center p-4">
+            <h2 className="text-2xl font-bold text-neutral-600 dark:text-neutral-200">
+              No favorites yet
+            </h2>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
-}
+};

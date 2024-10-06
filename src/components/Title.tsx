@@ -4,7 +4,7 @@ import { SparklesCore } from "../aceternity/components/ui/sparkles";
 
 export function Title() {
   return (
-    <div className="w-full mt-[200px] flex flex-col items-center justify-center overflow-hidden rounded-md">
+    <div className="w-full mt-[100px] flex flex-col items-center justify-center overflow-hidden rounded-md">
       <h1 className="md:text-5xl text-3xl lg:text-8xl font-bold text-center text-white relative z-20">
         Google Books
       </h1>
