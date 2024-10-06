@@ -44,7 +44,7 @@ function App() {
   };
 
   return (
-    <main className="flex flex-col items-center w-[100vw] min-h-[100vh] py-[100px] bg-[#111]">
+    <main className="flex flex-col relative items-center min-h-[100vh] w-[100vw]  py-[100px] bg-[#111]">
       <Title />
       <Search
         handleSearch={handleSearch}
