@@ -36,7 +36,7 @@ export function Cards({ cards }: { cards: any }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.2 } }}
-            className="fixed inset-0 bg-black/20 h-full w-full z-10"
+            className="fixed inset-0  bg-black/20 h-full w-full z-10"
           />
         )}
       </AnimatePresence>
@@ -44,7 +44,7 @@ export function Cards({ cards }: { cards: any }) {
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div
-            className="fixed inset-0 backdrop-blur-lg z-30"
+            className="fixed inset-0  backdrop-blur-lg z-30"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0, transition: { duration: 0.2 } }}
@@ -54,14 +54,14 @@ export function Cards({ cards }: { cards: any }) {
 
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
+          <div className="fixed inset-0  grid place-items-center z-[100]">
             <motion.button
               key={`button-${active.id}`}
               layout
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0, transition: { duration: 0.2 } }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+              className="flex absolute  top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
               onClick={() => setActive(null)}
             >
               <CloseIcon />
@@ -170,7 +170,7 @@ export function Cards({ cards }: { cards: any }) {
             key={card.id}
             layoutId={`card-${card.id}-${index}`}
             onClick={() => setActive(card)}
-            className="p-4 flex  flex-col md:flex-row justify-between items-center hover:border border-indigo-500 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            className="p-4 flex hover:shadow-2xl hover:shadow-sky-500/[0.1]  flex-col md:flex-row justify-between items-center hover:border border-indigo-500 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
           >
             <div className="flex gap-4 flex-col items-center md:flex-row">
               <motion.div layoutId={`image-${card.src}-${index}`}>

@@ -72,7 +72,6 @@ export default function ExpandableCardDemo() {
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <img
-                  priority
                   width={200}
                   height={200}
                   src={active.src}
@@ -135,7 +134,7 @@ export default function ExpandableCardDemo() {
           >
             <div className="flex gap-4 flex-col md:flex-row ">
               <motion.div layoutId={`image-${card.title}-${id}`}>
-                <Image
+                <img
                   width={100}
                   height={100}
                   src={card.src}
